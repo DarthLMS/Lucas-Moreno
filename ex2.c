@@ -43,9 +43,9 @@ void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
 	char nome;
 	printf("insira o nome desejado:\n");
 	gets(nome);
-	Primeiro_Nome(nome);
+	
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].nome == nome) {  //deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer
+		if (Primeiro_Nome(agenda[i].nome) == nome) {  //deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
