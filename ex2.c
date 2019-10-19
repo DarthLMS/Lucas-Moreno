@@ -39,7 +39,7 @@ typedef struct
 
 PESSOA agenda[100];//declarar variável agenda (b)
 
-void Primeiro_Nome(char *nome);
+void Primeiro_Nome(char *nome); // So coloquei o prototipo mesmo
 
 void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
 	char nome[41];
@@ -70,12 +70,12 @@ void buscaMes (PESSOA agenda[]) { //busca pessoas pelo mes de aniversário (d)
 	char mes[3];
 	printf("insira o mes desejado:\n");
 	gets(mes);
-	while (atoi(mes) < 1 || atoi(mes) > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) { // Trata os dados de mes como inteiros e verifica se o valor de entrada e maior que 1 e menor que 12
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].data.mes == mes) {
+		if (strcmp(agenda[i].data.mes,mes) == 0) { // Caso o mes de um dos cadastrados é igual ao mes a procurar
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -97,18 +97,18 @@ void buscaMeseDia (PESSOA agenda[]) { //busca pessoas pelo mes e dia de anivers�
 	char mes[3], dia[3];
 	printf("Insira o mes desejado: ");
 	gets(mes);
-	while (atoi(mes) < 1 || atoi(mes) > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) { // Trata o input de dia como int e verifica se o mes é maior que 1 e menor que 31
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
 	printf("Insira o dia desejado: ");
 	gets(dia);
-	while (atoi(dia) < 1 || atoi(dia) > 31) { 
+	while (atoi(dia) < 1 || atoi(dia) > 31) { // Trata o input de dia como int e verifica se o dia é maior que 1 e menor que 31
 		printf("insira um dia válido:\n");
 		gets(dia);
 	}
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].data.mes == mes && agenda[i].data.dia == dia) {
+		if (strcmp(agenda[i].data.mes, mes) == 0 && strcmp(agenda[i].data.dia,dia) == 0) { // Se a data de aniversario a procurar e igual a data de alguns cadastrados
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -131,14 +131,14 @@ void Primeiro_Nome(char *nome){ // Função que encontra o primeiro nome.
  dentro de uma outra variavel, portanto que não tenha um espaço. Se tiver, o loop para e o primeiro nome é passado de volta
  por referência */
     char primeiro_nome[41]; /* Tem que ter o mesmo número de caracteres que o campo nome no strict, se não dá merda */
-    for(int i = 0;i < strlen(nome);i++ ){
-        if(nome[i] != ' '){
-            primeiro_nome[i] = nome[i];
+    for(int i = 0;i < strlen(nome);i++ ){ // Vai fazer iteração até o tamanho da string
+        if(nome[i] != ' '){ // Se nao tiver espaços
+            primeiro_nome[i] = nome[i]; // O caracter na posicao i é passado para primeiro_nome
         }
-        else{
-            break;
+        else{ // se algum espaço for alcançado
+            break; // PARA TUDO!!
         }
     }
-    strcpy(nome,primeiro_nome);
+    strcpy(nome,primeiro_nome); // Passa o valor da variavel temporaria(primeiro_nome) para a variavel de argumento por referencia
 }
 
