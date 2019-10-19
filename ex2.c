@@ -37,10 +37,13 @@ typedef struct
 
 PESSOA agenda[100];//declarar variável agenda (b)
 
+void Primeiro_Nome(char *nome);
+
 void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
 	char nome;
 	printf("insira o nome desejado:\n");
 	gets(nome);
+	Primeiro_Nome(nome);
 	for (int i = 0; i > 100; i++) {
 		if (agenda[i].nome == nome) {  //deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer
 			printf("nome: %s\n", agenda[i].nome);
@@ -118,3 +121,20 @@ void buscaMeseDia (PESSOA agenda[]) { //busca pessoas pelo mes e dia de anivers�
 		}
 	}
 }
+
+void Primeiro_Nome(char *nome){ // Função que encontra o primeiro nome.
+ /* Essa função pega um nome de input, vai rodando conforme o tamanho do nome(strlen). A função coloca os caracteres
+ dentro de uma outra variavel, portanto que não tenha um espaço. Se tiver, o loop para e o primeiro nome é passado de volta
+ por referência */
+    char primeiro_nome[41];
+    for(int i = 0;i < strlen(nome);i++ ){
+        if(nome[i] != ' '){
+            primeiro_nome[i] = nome[i];
+        }
+        else{
+            break;
+        }
+    }
+    strcpy(nome,primeiro_nome);
+}
+
