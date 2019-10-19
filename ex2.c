@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct {
     char rua[31];
@@ -40,12 +42,13 @@ PESSOA agenda[100];//declarar variável agenda (b)
 void Primeiro_Nome(char *nome);
 
 void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
-	char nome;
+	char nome[41];
 	printf("insira o nome desejado:\n");
 	gets(nome);
 	
 	for (int i = 0; i > 100; i++) {
-		if (Primeiro_Nome(agenda[i].nome) == nome) {  //deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer
+		Primeiro_Nome(agenda[i].nome);
+		if (strcmp(agenda[i].nome, nome) == 0) {  /*deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer*/
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -64,10 +67,10 @@ void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
 }
 
 void buscaMes (PESSOA agenda[]) { //busca pessoas pelo mes de aniversário (d)
-	char mes;
+	char mes[3];
 	printf("insira o mes desejado:\n");
 	gets(mes);
-	while (mes < 1 || mes > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) {
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
@@ -91,15 +94,16 @@ void buscaMes (PESSOA agenda[]) { //busca pessoas pelo mes de aniversário (d)
 }
 
 void buscaMeseDia (PESSOA agenda[]) { //busca pessoas pelo mes e dia de aniversário (e)
-	char mes, dia;
-	printf("insira o mes desejado:\n");
+	char mes[3], dia[3];
+	printf("Insira o mes desejado: ");
 	gets(mes);
-	while (mes < 1 || mes > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) {
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
-	gets(dia)
-	while (dia < 1 || dia > 31) { 
+	printf("Insira o dia desejado: ");
+	gets(dia);
+	while (atoi(dia) < 1 || atoi(dia) > 31) { 
 		printf("insira um dia válido:\n");
 		gets(dia);
 	}
@@ -126,7 +130,7 @@ void Primeiro_Nome(char *nome){ // Função que encontra o primeiro nome.
  /* Essa função pega um nome de input, vai rodando conforme o tamanho do nome(strlen). A função coloca os caracteres
  dentro de uma outra variavel, portanto que não tenha um espaço. Se tiver, o loop para e o primeiro nome é passado de volta
  por referência */
-    char primeiro_nome[41];
+    char primeiro_nome[41]; /* Tem que ter o mesmo número de caracteres que o campo nome no strict, se não dá merda */
     for(int i = 0;i < strlen(nome);i++ ){
         if(nome[i] != ' '){
             primeiro_nome[i] = nome[i];
