@@ -1,0 +1,24 @@
+----------------------------------------Sobre o jogo----------------------------------------------
+
+Trilha ou Moinho é um tradicional e antigo jogo de tabuleiro, que frequentemente é incluído por 
+fabricantes brasileiros de jogos de tabuleiro como parte de coletâneas de jogos de tabuleiro.
+Tipicamente acompanha jogos como Damas, Gamão, Ludo e Xadrez.
+
+É da família dos jogos conhecidos como “Merels”, que inclui jogos como o Jogo da Velha e outras 
+variantes da Trilha.
+
+Mas sua origem é certamente bem mais antiga. Um desenho de tabuleiro semelhante ao da Trilha foi 
+encontrado em cavernas pré-históricas na Áustria e em uma caverna na França. Foram encontrados 
+tabuleiros no Egito, datados de 1400 a.C., Srilanka (10 a.C.) e num navio Viking, o Gokstad, de 
+900 a.C.
+
+
+Jogo desenvolvido em linguagem C como parte da avaliação do Trabalho 1 de Comp 1 2019-2 em Ciência 
+da Computação na UFRJ pelos estudantes:
+
+-Lucas Moreno
+-Matheus da Cunha
+-Ryan Oliveira
+
+Versão do jogo:
+2.12 
