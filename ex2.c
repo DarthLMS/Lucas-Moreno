@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct {
     char rua[31];
@@ -37,12 +39,16 @@ typedef struct
 
 PESSOA agenda[100];//declarar variável agenda (b)
 
+void Primeiro_Nome(char *nome); // So coloquei o prototipo mesmo
+
 void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
-	char nome;
+	char nome[41];
 	printf("insira o nome desejado:\n");
 	gets(nome);
+	
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].nome == nome) {  //deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer
+		Primeiro_Nome(agenda[i].nome);
+		if (strcmp(agenda[i].nome, nome) == 0) {  /*deve procurar só pelo primeiro nome, estou com dúvida sobre como fazer*/
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -61,15 +67,15 @@ void buscaNome (PESSOA agenda[]) { //busca pessoas pelo nome (c)
 }
 
 void buscaMes (PESSOA agenda[]) { //busca pessoas pelo mes de aniversário (d)
-	char mes;
+	char mes[3];
 	printf("insira o mes desejado:\n");
 	gets(mes);
-	while (mes < 1 || mes > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) { // Trata os dados de mes como inteiros e verifica se o valor de entrada e maior que 1 e menor que 12
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].data.mes == mes) {
+		if (strcmp(agenda[i].data.mes,mes) == 0) { // Caso o mes de um dos cadastrados é igual ao mes a procurar
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -88,20 +94,21 @@ void buscaMes (PESSOA agenda[]) { //busca pessoas pelo mes de aniversário (d)
 }
 
 void buscaMeseDia (PESSOA agenda[]) { //busca pessoas pelo mes e dia de aniversário (e)
-	char mes, dia;
-	printf("insira o mes desejado:\n");
+	char mes[3], dia[3];
+	printf("Insira o mes desejado: ");
 	gets(mes);
-	while (mes < 1 || mes > 12) {
+	while (atoi(mes) < 1 || atoi(mes) > 12) { // Trata o input de dia como int e verifica se o mes é maior que 1 e menor que 31
 		printf("insira um mês válido:\n");
 		gets(mes);
 	}
-	gets(dia)
-	while (dia < 1 || dia > 31) { 
+	printf("Insira o dia desejado: ");
+	gets(dia);
+	while (atoi(dia) < 1 || atoi(dia) > 31) { // Trata o input de dia como int e verifica se o dia é maior que 1 e menor que 31
 		printf("insira um dia válido:\n");
 		gets(dia);
 	}
 	for (int i = 0; i > 100; i++) {
-		if (agenda[i].data.mes == mes && agenda[i].data.dia == dia) {
+		if (strcmp(agenda[i].data.mes, mes) == 0 && strcmp(agenda[i].data.dia,dia) == 0) { // Se a data de aniversario a procurar e igual a data de alguns cadastrados
 			printf("nome: %s\n", agenda[i].nome);
 			printf("eMail: %s\n", agenda[i].eMail);	
 			printf("rua: %s\n", agenda[i].endereco.rua);	
@@ -118,3 +125,20 @@ void buscaMeseDia (PESSOA agenda[]) { //busca pessoas pelo mes e dia de anivers�
 		}
 	}
 }
+
+void Primeiro_Nome(char *nome){ // Função que encontra o primeiro nome.
+ /* Essa função pega um nome de input, vai rodando conforme o tamanho do nome(strlen). A função coloca os caracteres
+ dentro de uma outra variavel, portanto que não tenha um espaço. Se tiver, o loop para e o primeiro nome é passado de volta
+ por referência */
+    char primeiro_nome[41]; /* Tem que ter o mesmo número de caracteres que o campo nome no strict, se não dá merda */
+    for(int i = 0;i < strlen(nome);i++ ){ // Vai fazer iteração até o tamanho da string
+        if(nome[i] != ' '){ // Se nao tiver espaços
+            primeiro_nome[i] = nome[i]; // O caracter na posicao i é passado para primeiro_nome
+        }
+        else{ // se algum espaço for alcançado
+            break; // PARA TUDO!!
+        }
+    }
+    strcpy(nome,primeiro_nome); // Passa o valor da variavel temporaria(primeiro_nome) para a variavel de argumento por referencia
+}
+
